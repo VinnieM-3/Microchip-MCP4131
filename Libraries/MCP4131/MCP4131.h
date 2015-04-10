@@ -1,15 +1,17 @@
 /*
-Orginal Version developed by declanshanaghy
+  Orginal Version developed by declanshanaghy
 
   MCP4131.h - Library for Controlling MCP4131 Digital Pot.
   This one uses standard SPI library that is bundled with IDE
   Re-Created by Dennis Liang, November 19, 2011
   Released into the public domain.
-/
 
-
+  Modified by VinnieM-3 to include new methods including:
+  	shutdownPot, startupPot, isShutdown
+  	connectWiper, disconnectWiper, isWiperConnected
+  	connectA, disconnectA, isAConnected
+  	connectB, disconnectB, isBConnected  	
 */
-
 
 #ifndef MCP4131_h
 #define MCP4131_h
@@ -33,10 +35,29 @@ public:
 	boolean initTCON();
 	boolean readTCON();
 	boolean readStatus();
+	
+	boolean isShutdown();
+	boolean shutdownPot();
+	boolean startupPot();
+
+	boolean connectWiper();
+	boolean disconnectWiper();
+	boolean isWiperConnected();
+
+	boolean connectA();
+	boolean disconnectA();
+	boolean isAConnected();
+
+	boolean connectB();
+	boolean disconnectB();
+	boolean isBConnected();
+
 	boolean  increment();
 	boolean  decrement();
+	
 	boolean  setTap(int value);
 	boolean readTap(); 
+	
 	byte Tcon_Reg; //TCON register
 	byte Status_Reg; //Status Register
 	byte Wiper_Reg; //Wiper Register
