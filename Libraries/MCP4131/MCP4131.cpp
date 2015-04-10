@@ -88,6 +88,122 @@ boolean MCP4131::readStatus() {
 	return (ret1 == 0);
 }
 
+boolean MCP4131::isShutdown() {
+	byte ret1 = 0x08 & Tcon_Reg;
+	return (ret1 == 0);
+}
+
+boolean MCP4131::shutdownPot() {
+	enable();
+
+	//  send in the address and value via SPI:
+	byte ret1 = 0x02 & SPI.transfer(0x43); //Address of TCON
+	byte ret2 = SPI.transfer(0xF7 & Tcon_Reg);
+
+	disable();
+	readTCON();
+	return (ret1 == 0);
+}
+
+boolean MCP4131::startupPot() {
+	enable();
+
+	//  send in the address and value via SPI:
+	byte ret1 = 0x02 & SPI.transfer(0x43); //Address of TCON
+	byte ret2 = SPI.transfer(0x08 | Tcon_Reg);
+
+	disable();
+	readTCON();
+	return (ret1 == 0);
+}
+
+boolean MCP4131::connectWiper() {
+	enable();
+
+	//  send in the address and value via SPI:
+	byte ret1 = 0x02 & SPI.transfer(0x43); //Address of TCON
+	byte ret2 = SPI.transfer(0x02 | Tcon_Reg);
+
+	disable();
+	readTCON();
+	return (ret1 == 0);
+}
+
+boolean MCP4131::disconnectWiper() {
+	enable();
+
+	//  send in the address and value via SPI:
+	byte ret1 = 0x02 & SPI.transfer(0x43); //Address of TCON
+	byte ret2 = SPI.transfer(0xFD & Tcon_Reg);
+
+	disable();
+	readTCON();	
+	return (ret1 == 0);
+}
+
+boolean MCP4131::isWiperConnected() {
+	byte ret1 = 0x02 & Tcon_Reg;
+	return (ret1 != 0);
+}
+
+boolean MCP4131::connectA() {
+	enable();
+
+	//  send in the address and value via SPI:
+	byte ret1 = 0x02 & SPI.transfer(0x43); //Address of TCON
+	byte ret2 = SPI.transfer(0x04 | Tcon_Reg);
+
+	disable();
+	readTCON();
+	return (ret1 == 0);
+}
+
+boolean MCP4131::disconnectA() {
+	enable();
+
+	//  send in the address and value via SPI:
+	byte ret1 = 0x02 & SPI.transfer(0x43); //Address of TCON
+	byte ret2 = SPI.transfer(0xFB & Tcon_Reg);
+
+	disable();
+	readTCON();	
+	return (ret1 == 0);
+}
+
+boolean MCP4131::isAConnected() {
+	byte ret1 = 0x04 & Tcon_Reg;
+	return (ret1 != 0);
+}
+
+boolean MCP4131::connectB() {
+	enable();
+
+	//  send in the address and value via SPI:
+	byte ret1 = 0x02 & SPI.transfer(0x43); //Address of TCON
+	byte ret2 = SPI.transfer(0x01 | Tcon_Reg);
+
+	disable();
+	readTCON();
+	return (ret1 == 0);
+}
+
+boolean MCP4131::disconnectB() {
+	enable();
+
+	//  send in the address and value via SPI:
+	byte ret1 = 0x02 & SPI.transfer(0x43); //Address of TCON
+	byte ret2 = SPI.transfer(0xFE & Tcon_Reg);
+
+	disable();
+	readTCON();	
+	return (ret1 == 0);
+}
+
+boolean MCP4131::isBConnected() {
+	byte ret1 = 0x01 & Tcon_Reg;
+	return (ret1 != 0);
+}
+
 boolean MCP4131::setTap(int value) {
 	enable();
 
