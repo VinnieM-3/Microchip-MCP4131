@@ -15,7 +15,7 @@ void setup(void)
     Serial.println("Init Error!");
   }
 
-  Serial.println("\n\n\n\nSET TAP");
+  Serial.println("SET TAP = 32");
   if (MCP4131.setTap(32))
   {
     Serial.println("setTap Error!");
@@ -24,131 +24,66 @@ void setup(void)
 
 void loop(void)
 {
-  if (MCP4131.readTCON() == false)
-  {
-    delay(5000);
-    Serial.println("\nSTART LOOP");
-    Serial.print("isShutdown:");
-    Serial.println(MCP4131.isShutdown());
-    Serial.print("isWiperConnected:");
-    Serial.println(MCP4131.isWiperConnected());
-    Serial.print("isAConnected:");
-    Serial.println(MCP4131.isAConnected());
-    Serial.print("isBConnected:");
-    Serial.println(MCP4131.isBConnected());
-    Serial.print("WIPER:");
-    Serial.println(MCP4131.Wiper_Reg, DEC);
+  delay(5000);
+  Serial.println("\nSTART LOOP");
+  printout();
 
-    delay(5000);
-    Serial.println("\nDISCONNECT A");
-    MCP4131.disconnectA();
-    Serial.print("isShutdown:");
-    Serial.println(MCP4131.isShutdown());
-    Serial.print("isWiperConnected:");
-    Serial.println(MCP4131.isWiperConnected());
-    Serial.print("isAConnected:");
-    Serial.println(MCP4131.isAConnected());
-    Serial.print("isBConnected:");
-    Serial.println(MCP4131.isBConnected());
-    Serial.print("WIPER:");
-    Serial.println(MCP4131.Wiper_Reg, DEC);
+  delay(5000);
+  Serial.println("\nDISCONNECT A");
+  MCP4131.disconnectA();
+  printout();
 
-    delay(5000);
-    Serial.println("\nCONNECT A");
-    MCP4131.connectA();
-    Serial.print("isShutdown:");
-    Serial.println(MCP4131.isShutdown());
-    Serial.print("isWiperConnected:");
-    Serial.println(MCP4131.isWiperConnected());
-    Serial.print("isAConnected:");
-    Serial.println(MCP4131.isAConnected());
-    Serial.print("isBConnected:");
-    Serial.println(MCP4131.isBConnected());
-    Serial.print("WIPER:");
-    Serial.println(MCP4131.Wiper_Reg, DEC);
+  delay(5000);
+  Serial.println("\nCONNECT A");
+  MCP4131.connectA();
+  printout();
 
-    delay(5000);
-    Serial.println("\nDISCONNECT B");
-    MCP4131.disconnectB();
-    Serial.print("isShutdown:");
-    Serial.println(MCP4131.isShutdown());
-    Serial.print("isWiperConnected:");
-    Serial.println(MCP4131.isWiperConnected());
-    Serial.print("isAConnected:");
-    Serial.println(MCP4131.isAConnected());
-    Serial.print("isBConnected:");
-    Serial.println(MCP4131.isBConnected());
-    Serial.print("WIPER:");
-    Serial.println(MCP4131.Wiper_Reg, DEC);
+  delay(5000);
+  Serial.println("\nDISCONNECT B");
+  MCP4131.disconnectB();
+  printout();
 
-    delay(5000);
-    Serial.println("\nCONNECT B");
-    MCP4131.connectB();
-    Serial.print("isShutdown:");
-    Serial.println(MCP4131.isShutdown());
-    Serial.print("isWiperConnected:");
-    Serial.println(MCP4131.isWiperConnected());
-    Serial.print("isAConnected:");
-    Serial.println(MCP4131.isAConnected());
-    Serial.print("isBConnected:");
-    Serial.println(MCP4131.isBConnected());
-    Serial.print("WIPER:");
-    Serial.println(MCP4131.Wiper_Reg, DEC);
+  delay(5000);
+  Serial.println("\nCONNECT B");
+  MCP4131.connectB();
+  printout();
 
-    delay(5000);
-    Serial.println("\nDISCONNECT WIPER");
-    MCP4131.disconnectWiper();
-    Serial.print("isShutdown:");
-    Serial.println(MCP4131.isShutdown());
-    Serial.print("isWiperConnected:");
-    Serial.println(MCP4131.isWiperConnected());
-    Serial.print("isAConnected:");
-    Serial.println(MCP4131.isAConnected());
-    Serial.print("isBConnected:");
-    Serial.println(MCP4131.isBConnected());
-    Serial.print("WIPER:");
-    Serial.println(MCP4131.Wiper_Reg, DEC);
+  delay(5000);
+  Serial.println("\nDISCONNECT WIPER");
+  MCP4131.disconnectWiper();
+  printout();
 
-    delay(5000);
-    Serial.println("\nCONNECT WIPER");
-    MCP4131.connectWiper();
-    Serial.print("isShutdown:");
-    Serial.println(MCP4131.isShutdown());
-    Serial.print("isWiperConnected:");
-    Serial.println(MCP4131.isWiperConnected());
-    Serial.print("isAConnected:");
-    Serial.println(MCP4131.isAConnected());
-    Serial.print("isBConnected:");
-    Serial.println(MCP4131.isBConnected());
-    Serial.print("WIPER:");
-    Serial.println(MCP4131.Wiper_Reg, DEC);
+  delay(5000);
+  Serial.println("\nCONNECT WIPER");
+  MCP4131.connectWiper();
+  printout();
 
-    delay(5000);
-    Serial.println("\nSHUTDOWN");
-    MCP4131.shutdownPot();
-    Serial.print("isShutdown:");
-    Serial.println(MCP4131.isShutdown());
-    Serial.print("isWiperConnected:");
-    Serial.println(MCP4131.isWiperConnected());
-    Serial.print("isAConnected:");
-    Serial.println(MCP4131.isAConnected());
-    Serial.print("isBConnected:");
-    Serial.println(MCP4131.isBConnected());
-    Serial.print("WIPER:");
-    Serial.println(MCP4131.Wiper_Reg, DEC);
+  delay(5000);
+  Serial.println("\nSHUTDOWN");
+  MCP4131.shutdownPot();
+  printout();
 
-    delay(5000);
-    Serial.println("\nRESTART");
-    MCP4131.startupPot();
-    Serial.print("isShutdown:");
-    Serial.println(MCP4131.isShutdown());
-    Serial.print("isWiperConnected:");
-    Serial.println(MCP4131.isWiperConnected());
-    Serial.print("isAConnected:");
-    Serial.println(MCP4131.isAConnected());
-    Serial.print("isBConnected:");
-    Serial.println(MCP4131.isBConnected());
-    Serial.print("WIPER:");
+  delay(5000);
+  Serial.println("\nRESTART");
+  MCP4131.startupPot();
+  printout();
+}
+
+void printout() {
+  Serial.print("isShutdown: ");
+  Serial.println(MCP4131.isShutdown());
+  Serial.print("isWiperConnected: ");
+  Serial.println(MCP4131.isWiperConnected());
+  Serial.print("isAConnected: ");
+  Serial.println(MCP4131.isAConnected());
+  Serial.print("isBConnected: ");
+  Serial.println(MCP4131.isBConnected());
+  Serial.print("WIPER: ");
+  if (MCP4131.isShutdown()) {
+    Serial.println("Wiper connected to B");
+  } else if (!MCP4131.isWiperConnected()){
+    Serial.println("Wiper Disconnected");    
+  } else {
     Serial.println(MCP4131.Wiper_Reg, DEC);
   }
 }
