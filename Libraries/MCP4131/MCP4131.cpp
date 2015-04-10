@@ -1,6 +1,5 @@
 #include "MCP4131.h"
 
-
 MCP4131::MCP4131(int csPin)
 {
 	//Sets SS/CS pin
@@ -172,7 +171,7 @@ boolean MCP4131::disconnectA() {
 
 boolean MCP4131::isAConnected() {
 	byte ret1 = 0x04 & Tcon_Reg;
-	return (ret1 != 0);
+	return ((ret1 != 0) && !isShutdown());
 }
 
 boolean MCP4131::connectB() {
@@ -238,4 +237,3 @@ boolean MCP4131::readTap()
 
 	return (ret1 == 0);
 }
-
